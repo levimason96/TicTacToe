@@ -9,8 +9,9 @@
 using System;
 using System.Threading;
 
-namespace TicTacToe{
-    class Program {
+namespace TicTacToe
+{
+    class TicTacToeController {
         //making array and   
         //by default I am providing 0-9 where no use of zero  
 
@@ -22,7 +23,9 @@ namespace TicTacToe{
         static int flag = 0;
 
         static void Main(string[] args){
-            do{
+            AI ai = new AI();
+            do
+            {
                 Console.Clear();// whenever loop will be again start then screen will be clear  
                 Console.WriteLine("Player1:X and AI:O");
                 Console.WriteLine("\n");
@@ -31,7 +34,7 @@ namespace TicTacToe{
                 
                 if (player % 2 == 0){//checking the chance of the player
                     Console.WriteLine('\n' + "AI Chance");
-                    choice = AILogic(arr);
+                    choice = ai.getMove(arr);
                 }
 
                 else { 
@@ -158,28 +161,8 @@ namespace TicTacToe{
 
         }
 
-        public static int AILogic(char[] arr){
-            Random rand = new Random();
-            int option = rand.Next(1,10);
-
-            Console.WriteLine(option);
-
-            if (isValid(arr, option)) {
-                Thread.Sleep(2000);
-            }
-            else {
-                while (!(isValid(arr, option)))
-                {
-                    option = rand.Next(1, 10);
-                    Thread.Sleep(500);
-                    Console.WriteLine(option);
-                }
-            }
-
-            return option;
-        }
-
-        public static bool isValid(char[] arr, int move) {
+        public static bool isValid(char[] arr, int move)
+        {
             bool validity = false;
             if (arr[move] != 'X' && arr[move] != 'O')
             {
@@ -188,6 +171,5 @@ namespace TicTacToe{
 
             return validity;
         }
-
     }
 }
